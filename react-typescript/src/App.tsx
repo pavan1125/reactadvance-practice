@@ -4,6 +4,8 @@ import Layout from "./components/Layout";
 import About from "./components/About";
 import Login,{action as loginAction} from "./components/Login";
 import ProductDetail,{loader as productDetailLoader} from "./components/ProductDetail";
+import { Cart } from "./components/Cart";
+import Titles from "./components/Titles";
 
 
 const router=createBrowserRouter(
@@ -13,6 +15,8 @@ const router=createBrowserRouter(
              <Route path="about" element={<About/>}/>
              <Route path="login" element={<Login/>} action={loginAction}/>
              <Route path=":id" element={<ProductDetail/>} loader={productDetailLoader} />
+             <Route path="cart" element={<Cart/>}/>
+             <Route path="video" element={<Titles/>}/>
          </Route>
    )
 )

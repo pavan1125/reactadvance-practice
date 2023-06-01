@@ -7,6 +7,8 @@ export default function Layout() {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/login">Login</Link>
+        <Link to="/cart">see Cart</Link>
+        <Link to="/video">see video</Link>
     </div>
     <div> 
         <Outlet/>
