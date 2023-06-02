@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link,Outlet } from 'react-router-dom'
 export default function Layout() {
+   const [data,setData]=useState([])
+   useEffect(()=>{
+    async function fun(){
+      const response=await fetch("https://fakestoreapi.com/products")
+      const data=await response.json()
+      setData(data)
+    }
+    fun()
+   },[])
   return (
     <>
     <div>
@@ -11,7 +20,7 @@ export default function Layout() {
         <Link to="/video">see video</Link>
     </div>
     <div> 
-        <Outlet/>
+        <Outlet context={{content:data}}/>
     </div>
 
     </>

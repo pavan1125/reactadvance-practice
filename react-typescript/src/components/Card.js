@@ -1,15 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {useDispatch} from "react-redux" 
 import { CartActions } from '../store/store'
 
 
  const Card= (props) => {
      const dispatch=useDispatch()
-     const navigate=useNavigate()
-    function seeDetails(id){
-          return navigate(`${id}`)
-    }
-    function AddToCart(item){
+     const [search,setSearch]=useSearchParams()
+    
+     function AddToCart(item){
      
           dispatch(CartActions.AddToCart(item))
     }
@@ -20,7 +18,7 @@ import { CartActions } from '../store/store'
              <h4>title:{props.item.description}</h4>
              <h5>price:{props.item.price}</h5>
              <button onClick={()=>AddToCart(props.item)}>add to cart</button>
-             <button onClick={()=>seeDetails(props.item.id)}>see details</button>
+             <Link to={`${props.item.id}`} state={{search:`?${search.toString()}`}}>see details</Link>
          </div>
     </div>
   )

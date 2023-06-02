@@ -4,7 +4,8 @@ import {createSlice,configureStore} from "@reduxjs/toolkit"
 
 const cartInitialState={
       Items:[],
-      totalPrice:0
+      totalPrice:0,
+      showCart:false
 }
 
 const VideoState={
@@ -19,6 +20,10 @@ const VideoState={
             link: "http://192.168.100.114:8080/Video_Tutorials/React/React_The_Complete_Guide_incl_Hooks_ReactRouter_Redux/22%20A%20%28Pretty%20Deep%20Dive%29%20Introduction%20to%20Next/001%20Module%20Introduction.mp4",
           },
         ]
+}
+const AuthState={
+       isAuth:false,
+       userName:""
 }
 const CartSlice=createSlice({
      name:"Cart",
@@ -54,6 +59,9 @@ const CartSlice=createSlice({
                      let items=state.Items.filter((item)=>item.id!==id)
                      state.Items=items
                }
+          },
+          showCartHandler(state){
+            state.showCart=!state.showCart
           }
      }
 })
@@ -67,9 +75,21 @@ const VideoSlice=createSlice({
       }
 })
 
+const AuthSlice=createSlice({
+      name:"auth",
+      initialState:AuthState,
+      reducers:{
+             setLogin(state,action){
+                   state.isAuth=true
+                   state.userName=action.payload
+             }
+      }
+})
 
-const store=configureStore({reducer:{cart:CartSlice.reducer,video:VideoSlice.reducer}})
+
+const store=configureStore({reducer:{cart:CartSlice.reducer,video:VideoSlice.reducer,Auth:AuthSlice.reducer}})
 
 export const CartActions=CartSlice.actions
 export const VideoActions=VideoSlice.actions
+export const AuthActions=AuthSlice.actions
 export default store
